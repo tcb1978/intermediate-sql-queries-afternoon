@@ -1,0 +1,54 @@
+DROP TABLE IF EXISTS Movie;
+
+CREATE TABLE Movie (
+  id SERIAL PRIMARY KEY,
+  Title TEXT,
+  MediaTypeId INTEGER,
+  FOREIGN KEY(MediaTypeId) REFERENCES MediaType(MediaTypeId)
+);
+
+INSERT INTO Movie
+(Title, MediaTypeId)
+  
+VALUES
+  ('Batman', 1),
+  ('Revenge Of The Nerds', 2),
+  ('One Flew Over The Cuckoos Nest', 3),
+  ('Steel Magnolias', 4);
+
+--SELECT * FROM Movie;
+
+ALTER TABLE Movie
+ADD COLUMN GenreId INTEGER REFERENCES Genre(GenreId);
+    
+--SELECT * FROM Movie; 
+    
+UPDATE Movie
+SET GenreId = 22;
+
+--SELECT * FROM Movie; 
+
+/* SELECT a.title, ar.Name 
+FROM Album a 
+JOIN Artist ar ON a.ArtistId = ar.ArtistId; */
+
+/* SELECT * FROM Track 
+WHERE GenreId IN (SELECT GenreId FROM Genre WHERE Name = 'Jazz' OR Name = 'Blues')
+ */
+ 
+--UPDATE Employee SET Phone = NULL WHERE EmployeeId = 1;
+
+--SELECT * FROM Employee;
+ 
+--SELECT * FROM Customer WHERE company IS NULL;
+ 
+/* SELECT ar.artistId, ar.name, count(*) 
+FROM Artist ar
+JOIN Album a ON ar.ArtistId = a.ArtistId 
+GROUP BY ar.artistId; */
+
+/* SELECT DISTINCT Country
+  FROM Customer; */
+  
+/* SELECT * FROM Customer WHERE fax IS NULL; */
+/* DELETE * FROM Customer WHERE fax IS NULL;  */
